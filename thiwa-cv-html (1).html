@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. David Thiwa - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #0a0b0d;
+            background: #ffffff;
+            padding-top: 60px;
+        }
+        
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e3e8ee;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .nav-content {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 0 15mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #425466;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .nav-link.active {
+            color: white;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        /* Floating indicator for cover letter */
+        .cover-letter-indicator {
+            position: fixed;
+            top: 80px;
+            right: 30px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .cover-letter-indicator:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 15mm;
+            background: white;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                padding-top: 0;
+            }
+            .nav-bar, .cover-letter-indicator {
+                display: none;
+            }
+            .container {
+                max-width: 100%;
+                padding: 15mm;
+            }
+            .page-break {
+                page-break-before: always;
+                margin-top: 0;
+            }
+            .no-break {
+                page-break-inside: avoid;
+            }
+            .gradient-accent {
+                background: #f5f5f5 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            /* Ensure sections don't break awkwardly */
+            .section {
+                page-break-inside: avoid;
+            }
+            .experience-item, .education-item, .research-project {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Header with gradient background */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #fda085 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            border-radius: 16px;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            background: white;
+            border-radius: 15px;
+            z-index: 1;
+        }
+        
+        .header > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-left {
+            flex: 1;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-left: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid white;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0a0b0d;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 14px;
+            color: #425466;
+            margin-bottom: 12px;
+        }
+        
+        .contact-info span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .languages {
+            font-size: 13px;
+            color: #425466;
+            margin-top: 8px;
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        h2 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, #667eea, #764ba2, transparent) 1;
+        }
+        
+        .summary {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #0a0b0d;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f9fbff 100%);
+            border-radius: 12px;
+        }
+        
+        /* Technical Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .skill-category {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fafbfc;
+            border-radius: 12px;
+            border: 1px solid #e3e8ee;
+        }
+        
+        .skill-category h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0b0d;
+            margin-bottom: 12px;
+        }
+        
+        .skill-list {
+            font-size: 13px;
+            color: #425466;
+            line-height: 1.8;
+        }
+        
+        /* Experience */
+        .experience-item {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 3px solid transparent;
+            border-image: linear-gradient(180deg, #667eea, #764ba2) 1;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+        
+        .job-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0a0b0d;
+        }
+        
+        .job-date {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .job-company {
+            font-size: 14px;
+            color: #425466;
+            margin-bottom: 12px;
+        }
+        
+        .job-description {
+            font-size: 14px;
+            color: #425466;
+            line-height: 1.7;
+        }
+        
+        .job-description li {
+            margin-bottom: 6px;
+            margin-left: 20px;
+        }
+        
+        /* Education */
+        .education-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
+            border-radius: 10px;
+            border: 1px solid #e3e8ee;
+        }
+        
+        .degree {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0a0b0d;
+        }
+        
+        .university {
+            font-size: 14px;
+            color: #425466;
+            margin-top: 4px;
+        }
+        
+        .thesis {
+            font-size: 13px;
+            color: #425466;
+            margin-top: 8px;
+            padding: 8px;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 6px;
+        }
+        
+        .highlight-ml {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        
+        .magna-cum-laude {
+            display: inline;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 13px;
+            font-style: italic;
+        }
+        
+        /* Publications */
+        .publication {
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #425466;
+            line-height: 1.6;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .publication:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* Current Research */
+        .research-project {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+            border: 1px solid #e3e8ee;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .research-project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+        
+        .research-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0b0d;
+            margin-bottom: 8px;
+        }
+        
+        .research-description {
+            font-size: 13px;
+            color: #425466;
+            line-height: 1.6;
+        }
+        
+        .stat-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .project-category {
+            padding: 20px;
+            background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
+            border: 1px solid #e3e8ee;
+            border-radius: 12px;
+        }
+        
+        .project-category h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0b0d;
+            margin-bottom: 12px;
+        }
+        
+        .project-list {
+            font-size: 13px;
+            color: #425466;
+            line-height: 1.7;
+        }
+        
+        .project-list li {
+            margin-bottom: 5px;
+            margin-left: 20px;
+        }
+        
+        /* Additional */
+        .additional-list {
+            font-size: 14px;
+            color: #425466;
+            line-height: 1.8;
+        }
+        
+        .additional-list li {
+            margin-bottom: 8px;
+            margin-left: 20px;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: #0a0b0d;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 12px;
+        }
+        
+        /* Cover Letter Styles */
+        .cover-letter {
+            margin-top: 0;
+        }
+        
+        .letter-header {
+            margin-bottom: 30px;
+        }
+        
+        .letter-date {
+            font-size: 13px;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .letter-subject {
+            font-size: 16px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+            border-left: 3px solid;
+            border-image: linear-gradient(180deg, #667eea, #764ba2) 1;
+            border-radius: 8px;
+        }
+        
+        .letter-content {
+            max-width: 90%;
+        }
+        
+        .letter-paragraph {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #425466;
+            margin-bottom: 20px;
+        }
+        
+        .letter-section {
+            margin: 25px 0;
+        }
+        
+        .letter-heading {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0b0d;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .letter-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .letter-list li {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #425466;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .letter-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .bullet-point {
+            font-weight: 600;
+            color: #0a0b0d;
+        }
+        
+        .letter-signature {
+            margin-top: 40px;
+            padding-top: 20px;
+        }
+        
+        .signature-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0a0b0d;
+            margin: 10px 0;
+        }
+        
+        .signature-contact {
+            font-size: 13px;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-title">Application Package</div>
+            <div class="nav-links">
+                <a href="#cv" class="nav-link active">CV</a>
+                <a href="#cover-letter" class="nav-link">Cover Letter</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="cv">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>Dr. David Thiwa</h1>
+                <div class="subtitle">AI Engineering, Full-Stack Development & Clinical Research</div>
+                <div class="contact-info">
+                    <span>📧 <a href="mailto:thiwa8@msn.com" style="color: #425466; text-decoration: none;">thiwa8@msn.com</a></span>
+                    <span>📍 Berlin, Germany</span>
+                    <span>🔗 <a href="https://github.com/thiwa8" target="_blank" style="color: #425466; text-decoration: none;">github.com/thiwa8</a></span>
+                </div>
+                <div class="contact-info">
+                    <span><strong>Citizenship:</strong> Luxembourg, Rwanda</span>
+                </div>
+                <div class="languages">
+                    <strong>Languages:</strong> Luxembourgish (Native) • French (Native) • German (C2) • English (C2) • Spanish (C1)
+                </div>
+            </div>
+            <img src="https://jyqytuvvsgtookdafjbb.supabase.co/storage/v1/object/public/logo/thiwa-portrait.png" alt="Dr. David Thiwa" class="profile-img">
+        </div>
+
+        <!-- Summary -->
+        <div class="section">
+            <p class="summary">
+                Medical doctor who transitioned into data science during doctoral research (2017-2022), developing machine learning models for clinical decision-making. Statistical analyst for 10+ peer-reviewed medical studies. Currently leading AI development at MD Mate, implementing LLM-based solutions and coordinating multicenter research studies. Native Luxembourgish speaker with proven ability to bridge medical research and technical implementation.
+            </p>
+        </div>
+
+        <!-- Technical Expertise -->
+        <div class="section">
+            <h2>Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming & AI Development</h3>
+                    <div class="skill-list">
+                        <strong>Python:</strong> NumPy, Pandas, Matplotlib, Seaborn, scikit-learn, PyTorch, FastAPI, Asyncio<br>
+                        <strong>Generative AI:</strong> OpenAI, Anthropic, Mistral, Llama, Gemini - prompt engineering, RAG, fine-tuning<br>
+                        <strong>Cloud Platforms:</strong> AWS Bedrock, Google Cloud Platform/Vertex AI, Microsoft Azure<br>
+                        <strong>Deployment:</strong> Render.com, DigitalOcean, Docker, Git<br>
+                        <strong>Full-Stack:</strong> C++, Flutter/Dart, PostgreSQL, iOS/Android/Windows development
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Research & Statistical Analysis</h3>
+                    <div class="skill-list">
+                        <strong>Statistical Software:</strong> SPSS 28, Python statistical libraries<br>
+                        <strong>Methods:</strong> T-tests, χ²-tests, Wilcoxon Signed Rank, Mann-Whitney U, multivariate analysis<br>
+                        <strong>Visualization:</strong> Matplotlib, Seaborn for publication-quality figures<br>
+                        <strong>Documentation:</strong> LaTeX for mathematical-scientific publications<br>
+                        <strong>Study Design:</strong> Power calculations, sample size determination, statistical planning
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Experience -->
+        <div class="section">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">CEO & AI Developer</span>
+                    <span class="job-date">May 2024 - Present</span>
+                </div>
+                <div class="job-company">MD Mate S.à r.l.-S, Luxembourg</div>
+                <ul class="job-description">
+                    <li>Developed model fine-tuning pipelines and custom AI agents/workflows from scratch</li>
+                    <li>Built real-time multilingual transcription system using WebSockets for instant processing</li>
+                    <li>Implemented client-side encryption for highly sensitive patient data (AES-256)</li>
+                    <li>Develop full-stack applications: native iOS, Android, and Windows desktop applications</li>
+                    <li>Create Python-based data processing pipelines with PostgreSQL and RESTful API architectures</li>
+                    <li>Coordinate multicenter research studies across 6 German university hospitals</li>
+                    <li>Design statistical analysis plans and evaluation metrics for AI system assessment</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">Resident Physician & Clinical Researcher</span>
+                    <span class="job-date">March 2021 - April 2024</span>
+                </div>
+                <div class="job-company">University Medical Center Hamburg-Eppendorf</div>
+                <ul class="job-description">
+                    <li>Conducted statistical analysis for 10+ medical research studies</li>
+                    <li>Developed machine learning models for surgical outcome prediction (doctoral thesis)</li>
+                    <li>Created data visualizations using Python (Matplotlib/Seaborn) for publications</li>
+                    <li>Managed research coordination across multiple clinical sites</li>
+                    <li>Integrated AI research with clinical practice in Ophthalmology and ENT departments</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Page Break for A4 Printing -->
+        <div class="page-break"></div>
+
+        <!-- Education -->
+        <div class="section no-break">
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <div class="degree">Dr. med. - Doctoral dissertation (2017-2022)</div>
+                <div class="university">University Medical Center Hamburg-Eppendorf</div>
+                <div class="thesis">
+                    Thesis: "Continuous Intracorneal Ring Implantation in Keratoconus: <span class="highlight-ml">Machine-Learning</span> for Surgical Decision Making" 
+                    <span class="magna-cum-laude">(Magna Cum Laude)</span>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="degree">Human Medicine Degree - M.D. (2013-2020)</div>
+                <div class="university">University of Hamburg - Cum Laude (87th percentile nationally)</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="degree">Konrad-Adenauer Foundation Scholar (2017-2020)</div>
+                <div class="university">Competitive scholarship for exceptional students</div>
+            </div>
+        </div>
+
+        <!-- Current Research -->
+        <div class="section no-break">
+            <h2>Current Research Leadership (2024-2025)</h2>
+            
+            <div class="research-project">
+                <div class="research-title">External Study Partner & Statistician - Ludwig-Maximilians-Universität Munich</div>
+                <div class="research-description">
+                    "Impact of AI-assisted documentation on patient satisfaction in ambulatory care: A randomized controlled pilot study"<br>
+                    • Designed complete statistical analysis plan and methodology<br>
+                    • Calculated sample size and power analysis
+                    <div class="stat-badge">n=158 participants</div>
+                </div>
+            </div>
+            
+            <div class="research-project">
+                <div class="research-title">Co-Investigator - Multicenter Quality Study</div>
+                <div class="research-description">
+                    "Quality comparison between AI-assisted and conventional medical documentation: A prospective, multicenter, single-blinded non-inferiority study"<br>
+                    • Participating centers: University Witten/Herdecke, Bochum, Dresden, Saarland, Minden, Würzburg<br>
+                    • Developed evaluation metrics and complete statistical framework<br>
+                    • Designed power calculations and interim analysis strategy
+                    <div class="stat-badge">n=3,468 targeted enrollment</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Publications -->
+        <div class="section no-break">
+            <h2>Selected Publications</h2>
+            
+            <div class="publication">
+                Thiwa, D. (2022). Continuous Intracorneal Ring Implantation in Keratoconus: Machine-Learning for Surgical Decision Making. Doctoral dissertation, University Hamburg.
+            </div>
+            
+            <div class="publication">
+                Skevas et al. (2024). Implementing and evaluating a fully functional AI-enabled model for chronic eye disease screening in a real clinical environment. BMC Ophthalmology.
+            </div>
+            
+            <div class="publication">
+                Thiwa, D. et al. (2022). Continuous Intracorneal Ring Implantation in Keratoconus: Efficacy, Predictive Factors, and Complications. Clinical Ophthalmology.
+            </div>
+            
+            <div class="publication">
+                Statistical analysis contributor to 6+ additional peer-reviewed publications
+            </div>
+        </div>
+
+        <!-- Relevant Projects -->
+        <div class="section">
+            <h2>Relevant Projects & Skills</h2>
+            <div class="project-grid">
+                <div class="project-category">
+                    <h3>Data Processing Experience</h3>
+                    <ul class="project-list">
+                        <li>Built Python scripts for automated data extraction and transformation</li>
+                        <li>Created statistical analysis pipelines for multicenter clinical data</li>
+                        <li>Implemented data anonymization protocols for GDPR compliance</li>
+                    </ul>
+                </div>
+                <div class="project-category">
+                    <h3>Machine Learning Applications</h3>
+                    <ul class="project-list">
+                        <li>Developed predictive models using KNN, SVM, Random Forest, Lasso regression, Bayesian inference</li>
+                        <li>Integrated multiple LLM providers into production systems</li>
+                        <li>Created evaluation frameworks for AI-generated content quality</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Adaptability -->
+        <div class="section">
+            <h2>Adaptability for FNR Role</h2>
+            <ul class="additional-list">
+                <li><strong class="gradient-text">Phase 1 (Data Support):</strong> Strong Python scripting, statistical analysis, research data management</li>
+                <li><strong class="gradient-text">Phase 2 (AI Development):</strong> Proven ability to prototype and deploy AI solutions independently</li>
+                <li><strong class="gradient-text">Nice-to-have:</strong> Working knowledge of research ecosystem, medical background provides understanding of R&D evaluation</li>
+            </ul>
+        </div>
+
+        <!-- Additional Qualifications -->
+        <div class="section">
+            <h2>Additional Qualifications</h2>
+            <ul class="additional-list">
+                <li>Self-taught transition from medicine to data science (2017-present)</li>
+                <li>Full-stack development experience: Built and deployed cross-platform applications for iOS, Android, and Windows</li>
+                <li>Experience architecting scalable systems for small organizations requiring versatile technical leadership</li>
+                <li>Strong understanding of research methodology and ethical considerations in AI deployment</li>
+                <li>Proven ability to communicate complex technical concepts to diverse stakeholders</li>
+            </ul>
+        </div>
+
+        <!-- Page Break for Cover Letter -->
+        <div class="page-break"></div>
+
+        <!-- Cover Letter Section -->
+        <div class="section cover-letter" id="cover-letter">
+            <h2 style="border-image: linear-gradient(90deg, #667eea, #764ba2, #f093fb) 1;">Cover Letter</h2>
+            
+            <div class="letter-header">
+                <div class="letter-date">Application for FNR Position</div>
+            </div>
+
+            <div class="letter-content">
+                <p class="letter-paragraph">
+                    Dear FNR Hiring Team,
+                </p>
+                
+                <p class="letter-paragraph">
+                    I'm applying for your Data Scientist/AI Developer position advertised in Silicon Luxembourg. Native Luxembourgish speaker, currently CEO of MD Mate, with 7+ years combining statistical research and AI development.
+                </p>
+
+                <div class="letter-section">
+                    <h3 class="letter-heading">Relevant Experience:</h3>
+                    <p class="letter-paragraph">
+                        I build production AI systems from scratch. At MD Mate, I've deployed LLM integrations (OpenAI, Anthropic, Mistral) across AWS, GCP, and Azure, created full-stack applications, and developed Python-based data pipelines. Previously conducted statistical analysis for 10+ peer-reviewed studies and built machine learning models for clinical predictions during my doctorate (2017-2022).
+                    </p>
+                </div>
+
+                <div class="letter-section">
+                    <h3 class="letter-heading">Direct fit for your requirements:</h3>
+                    <ul class="letter-list">
+                        <li><span class="bullet-point">Phase 1:</span> Extensive Python scripting, data wrangling, statistical analysis (SPSS, scikit-learn)</li>
+                        <li><span class="bullet-point">Phase 2:</span> Proven AI implementation, from prototyping to production deployment</li>
+                        <li><span class="bullet-point">Research background:</span> Coordinating multicenter studies, designing statistical frameworks</li>
+                        <li><span class="bullet-point">Technical stack matches:</span> Python, cloud platforms, REST APIs, Git</li>
+                    </ul>
+                </div>
+
+                <div class="letter-section">
+                    <h3 class="letter-heading">Why FNR:</h3>
+                    <p class="letter-paragraph">
+                        Your two-phase approach aligns with my experience—I've spent years cleaning research data before building AI solutions on top of it. I understand both the grunt work and the innovation potential.
+                    </p>
+                </div>
+
+                <p class="letter-paragraph">
+                    Available immediately. Based in Berlin, flexible for relocation.
+                </p>
+
+                <div class="letter-signature">
+                    <p>Best regards,</p>
+                    <p class="signature-name">David Thiwa</p>
+                    <p class="signature-contact">
+                        <a href="mailto:thiwa8@msn.com" style="color: #667eea; text-decoration: none;">thiwa8@msn.com</a> | 
+                        <a href="https://github.com/thiwa8" target="_blank" style="color: #667eea; text-decoration: none;">github.com/thiwa8</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Cover Letter Indicator -->
+    <a href="#cover-letter" class="cover-letter-indicator">
+        📄 View Cover Letter →
+    </a>
+
+    <script>
+        // Update active navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const coverLetterSection = document.getElementById('cover-letter');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            if (coverLetterSection && scrollPosition > coverLetterSection.offsetTop - 200) {
+                navLinks[0].classList.remove('active');
+                navLinks[1].classList.add('active');
+            } else {
+                navLinks[0].classList.add('active');
+                navLinks[1].classList.remove('active');
+            }
+        });
+
+        // Hide floating indicator when cover letter is in view
+        window.addEventListener('scroll', () => {
+            const indicator = document.querySelector('.cover-letter-indicator');
+            const coverLetterSection = document.getElementById('cover-letter');
+            
+            if (coverLetterSection && window.scrollY > coverLetterSection.offsetTop - 500) {
+                indicator.style.display = 'none';
+            } else {
+                indicator.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
